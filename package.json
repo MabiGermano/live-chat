@@ -1,0 +1,10 @@
+{
+  "name": "live-chat",
+  "version": "1.0.0",
+  "description": "Live chat  builded with NodeJS and Socket.IO",
+  "main": "index.js",
+  "repository": "https://github.com/MabiGermano/live-chat.git",
+  "author": "Mabi Germano",
+  "license": "MIT",
+  "private": true
+}
