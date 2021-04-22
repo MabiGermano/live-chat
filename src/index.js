@@ -1,6 +1,6 @@
 
-const express = require('express') 
-const  http = require('http')
+const express = require('express')
+const http = require('http')
 const socket = require('socket.io')
 const { dirname, join } = require('path')
 
@@ -8,9 +8,10 @@ const app = express()
 const server = http.createServer(app)
 const io = socket(server);
 
+
 app.use(express.static(join(__dirname, '../public')))
 app.set('views', join(__dirname, '../public'))
-app.set('view engine', 'html')
+app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
     res.render('index.html')
