@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/global.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="assets/js/messageActions.js"></script>
     <title>Document</title>
-</head>
+</head>0
 
 <body>
     <h1>
@@ -39,41 +39,13 @@
     <script>
         const socket = io('http://localhost:3000')
 
-        socket.on('recivedMessage', message => renderMessage(message, false))
+        socket.on('recivedMessage', message => renderMessage(message))
 
-        function renderMessage(message, owner=true) {
-            const messages = document.querySelector('#messages')
-            console.log(messages);
-            const divMessage = document.createElement('div')
-            owner? divMessage.classList.add("owner") : divMessage.classList.add("other")
-            divMessage.innerHTML = `
-                <label>
-                    ${message.author}
-                </label>
-                <div class="textMessage">
-                    <p>
-                        ${message.message}
-                    </p>
-                </div>
-            `
-            messages.appendChild(divMessage)
-        }
-
-
-        function sendMessage(event) {
-            event.preventDefault()
-            const author = document.querySelector('#userName').value
-            const message = document.querySelector('#message').value
-
-            if (author.length > 0 && message.length) {
-                const messageObject = {
-                    author: author,
-                    message: message
-                }
-                renderMessage(messageObject)
-                socket.emit('sendMessage', messageObject)
-            }
-        }
+        socket.on('previousMessages', messages => {
+            messages.forEach(msg => {
+                renderMessage(msg)
+            });
+        })
     </script>
 </body>
 

@@ -19,8 +19,9 @@ app.get('/', (req, res) => {
 const messages = []
 
 io.on('connect', socket => {
-    console.log(`socket conectado: ${socket.id}`);
-
+    console.log(`socket conectado: ${socket.id}`)
+    socket.emit('previousMessages', messages)
+    
     socket.on('sendMessage', data => {
         messages.push(data)
         socket.broadcast.emit('recivedMessage', data)
