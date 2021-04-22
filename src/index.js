@@ -16,13 +16,14 @@ app.get('/', (req, res) => {
     res.render('index.html')
 })
 
+const messages = []
 
 io.on('connect', socket => {
     console.log(`socket conectado: ${socket.id}`);
 
     socket.on('sendMessage', data => {
-        console.log("oia")
-        console.log(data)
+        messages.push(data)
+        socket.broadcast.emit('recivedMessage', data)
     })
 })
 

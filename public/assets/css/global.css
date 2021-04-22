@@ -3,6 +3,8 @@
     --border-color: #BDBDBD;
     --button-color: #AE1C8E;
     --button-color-lighter: #bb40a0;
+    --primary-message-color: #E3B4CE;
+    --secondary-message-color: #B4B9E3;
 
     --border-config: 1px solid var(--border-color);
     --font-family-config: 22px 'Quantico', sans-serif;
@@ -43,10 +45,38 @@ section.message {
     border: var(--border-config);
 }
 
-section.messages {
+section#messages {
     height: 90%;
     margin-bottom: 1rem;
     background-color: white;
+    overflow: auto;
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+section#messages div {
+    padding: 0.3rem 1rem; 
+    width: 50%;
+}
+
+section#messages div .textMessage {
+    width: auto;
+}
+
+section#messages div .textMessage {
+    background-color: var(--primary-message-color);
+
+}
+
+section#messages div.owner {
+    align-self: flex-end;
+}
+
+section#messages div.owner .textMessage {
+    background-color: var(--secondary-message-color);
+    
 }
 
 form {
